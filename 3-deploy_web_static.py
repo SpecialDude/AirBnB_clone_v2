@@ -7,9 +7,12 @@ AirBnB_Clone_v2 project
 """
 
 
-from fabric.api import local
+from fabric.api import local, put, run, env
 from datetime import datetime
 import os
+
+
+env.hosts = ['35.168.8.57', '3.84.222.106']
 
 
 def do_pack():
@@ -28,4 +31,35 @@ def do_pack():
         return f_name
     except Exception:
         return None
-[?2004h[?1049h[22;0;0t[1;26r(B[m[4l[?7h[39;49m[?1h=[?1h=[?25l[39;49m(B[m[H[2J[24;34H(B[0;7m[ Reading... ](B[m[24;33H(B[0;7m[ Read 35 lines ](B[m[H(B[0;7m  GNU nano 6.2                2-do_deploy_web_static.py                          [1;80H(B[m[25d(B[0;7m^G(B[m Help[14G(B[0;7m^O(B[m Write Out (B[0;7m^W(B[m Where Is  (B[0;7m^K(B[m Cut[53G(B[0;7m^T(B[m Execute   (B[0;7m^C(B[m Location[26d(B[0;7m^X(B[m Exit[14G(B[0;7m^R(B[m Read File (B[0;7m^\(B[m Replace   (B[0;7m^U(B[m Paste     (B[0;7m^J(B[m Justify   (B[0;7m^/(B[m Go To Line[2d(B[0;1m[31m#!/usr/bin/python3[4d[32m"""[5dThis scripts deploys the web_static contents[6dto my nginx servers[7d"""[9d[36mimport[39m(B[m os[10d(B[0;1m[36mfrom[39m(B[m fabric.api (B[0;1m[36mimport[39m(B[m put, run, env[13denv.hosts = [(B[0;1m[32m'142.44.167.228'[39m(B[m, (B[0;1m[32m'144.217.246.195'[39m(B[m][16d(B[0;1m[36mdef[34m do_deploy[39m(B[m(archive_path):[17;5H(B[0;1m[32m"""deploys the web_static archives to the servers"""[19;5H[36mif[39m(B[m (B[0;1m[36mnot[39m(B[m os.path.exists(archive_path):[20;9H(B[0;1m[36mreturn[39m(B[m (B[0;1m[35mFalse[21;5H[36mtry[39m(B[m:[22df_name = archive_path.split((B[0;1m[32m"/"[39m(B[m)[-1][23;9Hf_no_ext = f_name.split((B[0;1m[32m"."[39m(B[m)[0][2d[?12l[?25h[?25l[1;57H(B[0;7m*[80G(B[m[?12l[?25h[2d(B[0;1m[31m #!/usr/bin/python3 [39m(B[m[?25l[24;11H(B[0;7m[ line  1/36 ( 2%), col  2/20 ( 10%), char    1/1003 ( 0%) ](B[m[?12l[?25h[2;2H[?25l[24;71H[?12l[?25h[2;2H[?25l[24;71H[?12l[?25h[2;2H[?25l[13;23r[23;1H[4S[1;26r[2;8H[1K f_name = archive_path.split((B[0;1m[32m"/"[39m(B[m)[-1][3;9Hf_no_ext = f_name.split((B[0;1m[32m"."[39m(B[m)[0][4;8H[1K path = (B[0;1m[32m"/data/web_static/releases/"[5d[39m(B[m[K[6;8H[1K put(archive_path, (B[0;1m[32m'/tmp/'[39m(B[m)[7;8H[1K run((B[0;1m[32m'mkdir -p {}{}/'[39m(B[m.format(path, f_no_ext))[8;9Hrun((B[0;1m[32m'tar -xzf /tmp/{} -C {}{}/'[39m(B[m.format(f_name, path, f_no_ext))[9;8H[1K run((B[0;1m[32m'rm /tmp/{}'[39m(B[m.format(file_name))[10;8H[1K run((B[0;1m[32m'mv {0}{1}/web_static/* {0}{1}/'[39m(B[m.format(path, f_no_ext))[11;9Hrun((B[0;1m[32m'rm -rf {}{}/web_static'[39m(B[m.format(path, f_no_ext))[12;9Hrun((B[0;1m[32m'rm -rf /data/web_static/current'[39m(B[m)[13;5H    run((B[0;1m[32m'ln -s {}{}/ /data/web_static/current'[39m(B[m.format(path, f_no_ext))[14;9H(B[0;1m[36mreturn[39m(B[m (B[0;1m[35mTrue[15;5H[36mexcept[39m(B[m Exception:[K[17d[K[18d[K[19d[K[2d [?12l[?25h[26;1H[?1049l[23;0;0t[?1l>[?1049h[22;0;0t[1;24r[?12l[?25h[39;49m]104(B[m[4l[?7h[H[2J[?2004h[?1h=[?1h=(B[0;7m  GNU nano 6.2                2-do_deploy_web_static.py *                        [1;80H(B[m[2;9Hf_name = archive_path.split((B[0;1m[32m"/"[39m(B[m)[-1][3;9Hf_no_ext = f_name.split((B[0;1m[32m"."[39m(B[m)[0][4;9Hpath = (B[0;1m[32m"/data/web_static/releases/"[6;9H[39m(B[mput(archive_path, (B[0;1m[32m'/tmp/'[39m(B[m)[7;9Hrun((B[0;1m[32m'mkdir -p {}{}/'[39m(B[m.format(path, f_no_ext))[8;9Hrun((B[0;1m[32m'tar -xzf /tmp/{} -C {}{}/'[39m(B[m.format(f_name, path, f_no_ext))[9;9Hrun((B[0;1m[32m'rm /tmp/{}'[39m(B[m.format(file_name))[10;9Hrun((B[0;1m[32m'mv {0}{1}/web_static/* {0}{1}/'[39m(B[m.format(path, f_no_ext))[11;9Hrun((B[0;1m[32m'rm -rf {}{}/web_static'[39m(B[m.format(path, f_no_ext))[12;9Hrun((B[0;1m[32m'rm -rf /data/web_static/current'[39m(B[m)[13;9Hrun((B[0;1m[32m'ln -s {}{}/ /data/web_static/current'[39m(B[m.format(path, f_no_ext))[14;9H(B[0;1m[36mreturn[39m(B[m (B[0;1m[35mTrue[15;5H[36mexcept[39m(B[m Exception:[16;9H(B[0;1m[36mreturn[39m(B[m (B[0;1m[35mFalse[23d[39m(B[0;7m^G(B[m Help[14G(B[0;7m^O(B[m Write Out (B[0;7m^W(B[m Where Is  (B[0;7m^K(B[m Cut[53G(B[0;7m^T(B[m Execute   (B[0;7m^C(B[m Location[24d(B[0;7m^X(B[m Exit[14G(B[0;7m^R(B[m Read File (B[0;7m^\(B[m Replace   (B[0;7m^U(B[m Paste     (B[0;7m^J(B[m Justify   (B[0;7m^/(B[m Go To Line[?25l[?12l[?25h[2d [?25l[?12l[?25h[24;1H[?1049l[23;0;0t[?1l>[?2004l[24;1H[?1049l[23;0;0t[?1l>[?1049h[22;0;0t[1;24r[?12l[?25h[39;49m]104(B[m[4l[?7h[H[2J(B[0;7m  GNU nano 6.2                2-do_deploy_web_static.py *                        [2;9H(B[mf_name = archive_path.split((B[0;1m[32m"/"[39m(B[m)[-1][3;9Hf_no_ext = f_name.split((B[0;1m[32m"."[39m(B[m)[0][4;9Hpath = (B[0;1m[32m"/data/web_static/releases/"[6;9H[39m(B[mput(archive_path, (B[0;1m[32m'/tmp/'[39m(B[m)[7;9Hrun((B[0;1m[32m'mkdir -p {}{}/'[39m(B[m.format(path, f_no_ext))[8;9Hrun((B[0;1m[32m'tar -xzf /tmp/{} -C {}{}/'[39m(B[m.format(f_name, path, f_no_ext))[9;9Hrun((B[0;1m[32m'rm /tmp/{}'[39m(B[m.format(file_name))[10;9Hrun((B[0;1m[32m'mv {0}{1}/web_static/* {0}{1}/'[39m(B[m.format(path, f_no_ext))[11;9Hrun((B[0;1m[32m'rm -rf {}{}/web_static'[39m(B[m.format(path, f_no_ext))[12;9Hrun((B[0;1m[32m'rm -rf /data/web_static/current'[39m(B[m)[13;9Hrun((B[0;1m[32m'ln -s {}{}/ /data/web_static/current'[39m(B[m.format(path, f_no_ext))[14;9H(B[0;1m[36mreturn[39m(B[m (B[0;1m[35mTrue[15;5H[36mexcept[39m(B[m Exception:[16;9H(B[0;1m[36mreturn[39m(B[m (B[0;1m[35mFalse[23d[39m(B[0;7m^G(B[m Help[14G(B[0;7m^O(B[m Write Out (B[0;7m^W(B[m Where Is  (B[0;7m^K(B[m Cut[53G(B[0;7m^T(B[m Execute   (B[0;7m^C(B[m Location[24d(B[0;7m^X(B[m Exit[14G(B[0;7m^R(B[m Read File (B[0;7m^\(B[m Replace   (B[0;7m^U(B[m Paste     (B[0;7m^J(B[m Justify   (B[0;7m^/(B[m Go To Line[H[?2004h[?1h=[?1h=[23d[J[1;80H[23d(B[0;7m^G(B[m Help[14G(B[0;7m^O(B[m Write Out (B[0;7m^W(B[m Where Is  (B[0;7m^K(B[m Cut[53G(B[0;7m^T(B[m Execute   (B[0;7m^C(B[m Location[24d(B[0;7m^X(B[m Exit[14G(B[0;7m^R(B[m Read File (B[0;7m^\(B[m Replace   (B[0;7m^U(B[m Paste     (B[0;7m^J(B[m Justify   (B[0;7m^/(B[m Go To Line
+
+
+def do_deploy(archive_path):
+    """deploys the web_static archives to the servers"""
+
+    if not os.path.exists(archive_path):
+        return False
+    try:
+        f_name = archive_path.split("/")[-1]
+        f_no_ext = f_name.split(".")[0]
+        path = "/data/web_static/releases/"
+
+        put(archive_path, '/tmp/')
+        run('mkdir -p {}{}/'.format(path, f_no_ext))
+        run('tar -xzf /tmp/{} -C {}{}/'.format(f_name, path, f_no_ext))
+        run('rm /tmp/{}'.format(file_name))
+        run('mv {0}{1}/web_static/* {0}{1}/'.format(path, f_no_ext))
+        run('rm -rf {}{}/web_static'.format(path, f_no_ext))
+        run('rm -rf /data/web_static/current')
+        run('ln -s {}{}/ /data/web_static/current'.format(path, f_no_ext))
+        return True
+    except Exception:
+        return False
+
+
+def deploy():
+    """This function uploads the archive to the servers"""
+
+    archive_path = do_pack()
+    if archive_path is None:
+        return False
+    return do_deploy(archive_path)
