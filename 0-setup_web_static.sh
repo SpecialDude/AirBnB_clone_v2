@@ -9,20 +9,20 @@ test_folder="$release_dir/test"
 test_file="$test_folder/index.html"
 current_f="$data_root/current"
 
-apt-get -y update && apt-get -y upgrade
-apt-get -y install nginx
+sudo apt-get -y update && sudo apt-get -y upgrade
+sudo apt-get -y install nginx
 
 
-mkdir -p "$shared_folder" "$test_folder"
-echo "Hello Nginx" > "$test_file"
+sudo mkdir -p "$shared_folder" "$test_folder"
+sudo echo "Hello Nginx" > "$test_file"
 
 if [ -e "$current_f" ]; then
-	rm -v "$current_f"
+	sudo rm -v "$current_f"
 fi
 
-ln -sf "$test_folder" "$current_f"
-chown -hR  ubuntu:ubuntu "$root_dir"
-sed -i '38i\\tlocation /hbnb_static/ {\n\t\talias /data/web_static/current/;\n\t}\n' /etc/nginx/sites-available/default
+sudo ln -sf "$test_folder" "$current_f"
+sudo chown -hR  ubuntu:ubuntu "$root_dir"
+sudo sed -i '38i\\tlocation /hbnb_static/ {\n\t\talias /data/web_static/current/;\n\t}\n' /etc/nginx/sites-available/default
 
-service nginx stop
-service nginx start
+sudo service nginx stop
+sudo service nginx start
