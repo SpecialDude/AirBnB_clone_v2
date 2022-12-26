@@ -14,7 +14,7 @@ sudo apt-get -y install nginx
 
 
 sudo mkdir -p "$shared_folder" "$test_folder"
-sudo echo "Hello Nginx" > "$test_file"
+echo "Hello Nginx" | sudo tee "$test_file"
 
 if [ -e "$current_f" ]; then
 	sudo rm -v "$current_f"
