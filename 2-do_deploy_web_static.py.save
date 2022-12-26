@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+ #!/usr/bin/python3
 
 """
 This scripts deploys the web_static contents
@@ -9,7 +9,7 @@ import os
 from fabric.api import put, run, env
 
 
-env.hosts = ['35.168.8.57', '3.84.222.106']
+env.hosts = ['142.44.167.228', '144.217.246.195']
 
 
 def do_deploy(archive_path):
