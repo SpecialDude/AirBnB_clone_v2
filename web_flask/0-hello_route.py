@@ -11,9 +11,12 @@ import flask
 
 app = flask.Flask(__name__)
 
+
 @app.route("/", strict_slashes=False)
 def home():
-    """ The home page """
+    """The route for the home page
+        Returns: Hello HBNB!
+    """
 
     return "Hello HBNB!"
 
