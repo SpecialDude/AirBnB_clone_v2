@@ -9,15 +9,19 @@ With a single routing
 import flask
 
 
-app = flask.Flask(__name__)
+def create_flask_app():
+    """Creates the flask application"""
 
+    app = flask.Flask(__name__)
 
-@app.route("/", strict_slashes=False)
-def home():
-    """ The home page """
+    @app.route("/", strict_slashes=False)
+    def home():
+        """ The home page """
 
-    return "Hello HBNB!"
+        return "Hello HBNB!"
+
+    return app
 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000)
+    create_flask_app().run(host="0.0.0.0", port=5000)
