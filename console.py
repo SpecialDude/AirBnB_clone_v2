@@ -146,13 +146,16 @@ class HBNBCommand(cmd.Cmd):
                 value = value.strip('"')
                 value = value.replace('\\"', '"')
                 value = value.replace('_', ' ')
-            elif value.isnumeric():
-                if '.' in value:
+            elif '.' in value:
+                try:
                     value = float(value)
-                else:
-                    value = int(value)
+                except Exception:
+                    continue
             else:
-                continue
+                try:
+                    value = int(value)
+                except Exception:
+                    continue
 
             data[key] = value
 

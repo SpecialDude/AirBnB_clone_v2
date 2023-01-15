@@ -107,3 +107,16 @@ class test_fileStorage(unittest.TestCase):
         from models.engine.file_storage import FileStorage
         print(type(storage))
         self.assertEqual(type(storage), FileStorage)
+
+    def test_model_create(self):
+        from models.state import State
+        from models.place import Place
+
+        new_state_data = {"name": "California"}
+        another_state_data = {"name": "Arizona"}
+
+        cal = State(**new_state_data)
+        ari = State(**another_state_data)
+
+        self.assertEqual(cal.name, new_state_data['name'])
+        self.assertEqual(ari.name, another_state_data['name'])
