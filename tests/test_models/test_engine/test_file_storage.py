@@ -109,8 +109,8 @@ class test_fileStorage(unittest.TestCase):
         self.assertEqual(type(storage), FileStorage)
 
     def test_model_create(self):
+        """ Test for model create """
         from models.state import State
-        from models.place import Place
 
         new_state_data = {"name": "California"}
         another_state_data = {"name": "Arizona"}
@@ -120,3 +120,26 @@ class test_fileStorage(unittest.TestCase):
 
         self.assertEqual(cal.name, new_state_data['name'])
         self.assertEqual(ari.name, another_state_data['name'])
+
+    def test_model_delete(self):
+        """ Test for model deletion """
+
+        from models.state import State
+        from models.engine.file_storage import FileStorage
+        new_state_data = {"name": "California"}
+        another_state_data = {"name": "Arizona"}
+
+        cal = State(**new_state_data)
+        ari = State(**another_state_data)
+
+        fs = FileStorage()
+
+        # All States
+        all_states = fs.all(State)
+        print(all_states["State.{}".format(cal.id)])
+
+        fs.delete(cal)
+        fs.save()
+
+        with self.assertRaises(KeyError):
+            fs.all()["State.{}".format(cal.id)]

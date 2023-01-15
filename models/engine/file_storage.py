@@ -13,8 +13,8 @@ class FileStorage:
 
         if cls is not None:
             return {
-                key: value for key, value in FileStorage.__objects
-                if key['__class__'] == cls
+                key: value for key, value in FileStorage.__objects.items()
+                if type(value) is cls
             }
         return FileStorage.__objects
 
@@ -60,7 +60,8 @@ class FileStorage:
 
         if obj is not None:
             try:
-                del FileStorage.__objects[obj]
+                key = "{}.{}".format(obj.__class__.__name__, obj.id)
+                del FileStorage.__objects[key]
             except Exception:
                 pass
 
