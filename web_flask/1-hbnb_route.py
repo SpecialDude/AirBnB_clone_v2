@@ -6,10 +6,10 @@ With two routes
 """
 
 
-import flask
+from flask import Flask
 
 
-app = flask.Flask(__name__)
+app = Flask(__name__)
 
 
 @app.route("/", strict_slashes=False)
