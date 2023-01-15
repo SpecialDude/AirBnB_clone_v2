@@ -66,9 +66,9 @@ def number_odd_or_even(n):
     """ Number Odd or Even page """
 
     if (n % 2 == 0):
-        text = "Even"
+        text = "even"
     else:
-        text = "Odd"
+        text = "odd"
 
     return render_template('6-number_odd_or_even.html', n=n, type=text)
 
