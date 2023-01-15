@@ -8,8 +8,6 @@ from models import storage
 class BaseModel:
     """A base class for all hbnb models"""
 
-    _allowed_attributes = {'id', 'created_at', 'updated_at'}
-
     def __init__(self, *args, **kwargs):
 
         """Instance initialization"""
@@ -23,9 +21,6 @@ class BaseModel:
                     value = datetime.strptime(
                         value, "%Y-%m-%dT%H:%M:%S.%f"
                     )
-                else:
-                    if key not in self._allowed_attributes:
-                        raise KeyError
 
                 setattr(self, key, value)
             if kwargs.get("id") is None:

@@ -118,6 +118,8 @@ class HBNBCommand(cmd.Cmd):
 
         arguments = args.split()
 
+        print(arguments)
+
         if len(arguments) == 0:
             print("** class name missing **")
             return
